@@ -1,0 +1,57 @@
+﻿
+
+Idé
+***************
+
+Lösa mattetal på tid.
+Få poäng beroende på hur snabb man är. Addera poäng till sina poäng så man blir bättre och bättre.
+
+Som förälder kunna koppla ett pris när man har visst antal poäng eller liknande. Kunna koppla en bild "överraskning" efter en uppgift.
+
+
+Visa tex 7+8=?
+
+Man matar in 15. Hoppar till nästa tal. 10 tal i taget.
+
+
+
+Kunna logga in
+Skicka in poäng koppla till användare.
+
+Som förälder kunna lägga till sitt barn.
+Kunna koppla bilder som "överaskningar" som visas efter varje klarat "bana" eller liknande.
+
+Tabeller:
+User
+
+
+User + Score
+
+GameId
+UserId
+Rounds
+Time
+Score
+
+
+Steg 1:
+Typer av spel:
+	Addition (10-kompis, 0-10, 0-20, 10-20, 10-100 etc)
+	Substration (10-kompis, 0-10, 0-20, 10-20, 10-100 etc)
+
+Man kan ta en bild (grimas) som visas när barnet har klarat alla uppgifter.
+
+Första utkastet
+	Logga in.
+	Skapa spel - Addition 0-20. 10 tal
+	Skicka in poäng beroende på tid och koppla till användare.
+
+	<-User->
+	UserId
+	TotalScore?
+
+	<-Game->
+	UserId
+	Rounds
+	Time
+	Score

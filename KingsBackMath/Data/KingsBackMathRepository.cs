@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KingsBackMath.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace KingsBackMath.Data
@@ -17,6 +18,25 @@ namespace KingsBackMath.Data
         {
             this.context = context;
             this.logger = logger;
+        }
+
+        public string GetConnectionString()
+        {
+            return context?.Database?.GetDbConnection()?.ConnectionString;
+        }
+
+        public int TestDb()
+        {
+            try
+            {
+                logger.LogInformation("TestDb was called");
+                return context.Games.Count();
+            }
+            catch (Exception e)
+            {
+                logger.LogError($"Failed to get all games {e}");
+                return -1;
+            }
         }
 
         public IEnumerable<Game> GetAllGames()

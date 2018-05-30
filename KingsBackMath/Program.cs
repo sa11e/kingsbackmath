@@ -19,16 +19,16 @@ namespace KingsBackMath
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration(SetupConfiguration)
+            //.ConfigureAppConfiguration(SetupConfiguration)
                 .UseStartup<Startup>()
                 .Build();
 
-        private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
-        {
-            // Removing the default configuration options
-            builder.Sources.Clear();
+        //private static void SetupConfiguration(WebHostBuilderContext ctx, IConfigurationBuilder builder)
+        //{
+        //    // Removing the default configuration options
+        //    builder.Sources.Clear();
 
-            builder.AddJsonFile("config.json", false, true);
-        }
+        //    builder.AddJsonFile("config.json", false, true);
+        //}
     }
 }

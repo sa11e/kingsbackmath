@@ -15,5 +15,7 @@ namespace KingsBackMath.Data
             
         }
         public DbSet<Game> Games { get; set; }
+        public DbSet<Child> Children { get; set; }
+        public DbSet<GameDefinition> GameDefinitions { get; set; }
     }
 }

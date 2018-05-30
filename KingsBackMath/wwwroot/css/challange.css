@@ -1,0 +1,31 @@
+﻿h1 {
+    color: orange;
+    font-family: verdana;
+    font-size: 300%;
+}
+
+.form {
+    font-size: 200%;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    margin: 4px 1px;
+    cursor: pointer;
+    font-size: 200%;
+}
+
+.disabledButton {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#validationError {
+    color: #d9534f;
+    display: none;
+}

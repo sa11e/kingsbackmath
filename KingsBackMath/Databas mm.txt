@@ -1,3 +1,4 @@
+Stå i katalogen C:\Egna projekt\KingsBackMath\KingsBackMath
 dotnet ef migrations add GameAddedTimeCreated
 
 C:\Egna projekt\KingsBackMath\KingsBackMath>dotnet ef database update

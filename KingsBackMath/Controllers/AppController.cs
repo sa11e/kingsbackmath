@@ -61,5 +61,13 @@ namespace KingsBackMath.Controllers
             var games = repository.GetAllGames();
             return View(games);
         }
+
+        [HttpGet("Testpage")]
+        public IActionResult Testpage()
+        {
+            var games = repository.GetAllGames();
+            return View(games);
+
+        }
     }
 }

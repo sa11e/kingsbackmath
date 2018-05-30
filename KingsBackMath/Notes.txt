@@ -43,6 +43,11 @@ Man kan ta en bild (grimas) som visas när barnet har klarat alla uppgifter.
 
 Första utkastet
 	Logga in.
+	User (förälder) kan skapa en speldefinition.
+	User kan lägga till ett barn.
+	I appen kan man välja på speldefinitioner.
+	Välj vilket barn man är. Börja spela. När man gjort alla runder skickas resultatet till servern som ett Game.
+
 	Skapa spel - Addition 0-20. 10 tal
 	Skicka in poäng beroende på tid och koppla till användare.
 
@@ -50,8 +55,24 @@ Första utkastet
 	UserId
 	TotalScore?
 
+	<Child>
+	Id
+	Name
+
 	<-Game->
+	Id
+	TimeCreated
 	UserId
+	ChildId
 	Rounds
-	Time
+	TimeSecs
 	Score
+
+	<GameDefinition>
+	Id
+	Type (Addition, Substraktion)
+	MinNumber
+	MaxNumber
+	Rounds
+	List<Images>
+	Status (Aktivt, Inaktivt)

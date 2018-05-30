@@ -11,5 +11,7 @@ namespace KingsBackMath.Data.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public List<Child> Children{ get; set; }
+        
     }
 }

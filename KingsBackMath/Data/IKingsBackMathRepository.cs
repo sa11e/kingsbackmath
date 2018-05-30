@@ -10,5 +10,6 @@ namespace KingsBackMath.Data
         bool SaveAll();
         
         void AddEntity(object model);
+        string GetConnectionString();
     }
 }

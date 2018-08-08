@@ -46,15 +46,34 @@ namespace KingsBackMath.Data
                 }
             }
 
+            var gameDefinition = context.GameDefinitions.FirstOrDefault();
+
+            if (gameDefinition == null)
+            {
+                gameDefinition = new GameDefinition
+                {
+                    Type = GameDefintionType.Addition,
+                    MinNumber = 1,
+                    MaxNumber = 10,
+                    Rounds = 10,
+                    Status = GameDefintionStatus.Active,
+                    TimeCreated = DateTime.Now,
+                    CreatedBy = user
+                };
+                context.GameDefinitions.Add(gameDefinition);
+            }
+
             if (!context.Games.Any())
             {
                 // Seed some games
                 context.Games.Add(new Game
                 {
                     User = user,
-                    Rounds = 3,
-                    Score = 111,
-                    TimeSecs = 3
+                    TimeCreated = DateTime.Now,
+                    GameDefinitionId = gameDefinition.Id,
+                    GameDefinition = gameDefinition,
+                    Score = 8,
+                    TimeSecs = 100
                 });
                 context.SaveChanges();
             }

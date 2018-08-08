@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace KingsBackMath.Migrations
+namespace KingsBackMath.Data.Migrations
 {
     [DbContext(typeof(KingsBackMathContext))]
     partial class KingsBackMathContextModelSnapshot : ModelSnapshot
@@ -46,7 +46,7 @@ namespace KingsBackMath.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Rounds");
+                    b.Property<int>("GameDefinitionId");
 
                     b.Property<int>("Score");
 
@@ -58,6 +58,8 @@ namespace KingsBackMath.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GameDefinitionId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Games");
@@ -68,6 +70,8 @@ namespace KingsBackMath.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CreatedById");
+
                     b.Property<int>("MaxNumber");
 
                     b.Property<int>("MinNumber");
@@ -76,9 +80,13 @@ namespace KingsBackMath.Migrations
 
                     b.Property<int>("Status");
 
+                    b.Property<DateTime>("TimeCreated");
+
                     b.Property<int>("Type");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
 
                     b.ToTable("GameDefinitions");
                 });
@@ -255,9 +263,21 @@ namespace KingsBackMath.Migrations
 
             modelBuilder.Entity("KingsBackMath.Data.Entities.Game", b =>
                 {
+                    b.HasOne("KingsBackMath.Data.Entities.GameDefinition", "GameDefinition")
+                        .WithMany()
+                        .HasForeignKey("GameDefinitionId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("KingsBackMath.Data.Entities.GameUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("KingsBackMath.Data.Entities.GameDefinition", b =>
+                {
+                    b.HasOne("KingsBackMath.Data.Entities.GameUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

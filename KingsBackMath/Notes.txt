@@ -48,7 +48,7 @@ Första utkastet
 	I appen kan man välja på speldefinitioner.
 	Välj vilket barn man är. Börja spela. När man gjort alla runder skickas resultatet till servern som ett Game.
 
-	Skapa spel - Addition 0-20. 10 tal
+	Skapa speldefinition - Addition 0-20. 10 tal
 	Skicka in poäng beroende på tid och koppla till användare.
 
 	<-User->
@@ -64,7 +64,7 @@ Första utkastet
 	TimeCreated
 	UserId
 	ChildId
-	Rounds
+	GameDefinitionId
 	TimeSecs
 	Score
 
@@ -76,3 +76,5 @@ Första utkastet
 	Rounds
 	List<Images>
 	Status (Aktivt, Inaktivt)
+	TimeCreated
+	CreatedBy

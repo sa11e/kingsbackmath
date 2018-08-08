@@ -7,13 +7,14 @@
 
 <table class="table">
     <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">User</th>
-        <th scope="col">Rounds</th>
-        <th scope="col">Score</th>
-        <th scope="col">TimeSecs</th>
-    </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+            <th scope="col">Created</th>
+            <th scope="col">Game definition</th>
+            <th scope="col">TimeSecs</th>
+            <th scope="col">Score</th>
+        </tr>
     </thead>
     <tbody>
     @foreach (var game in Model)
@@ -21,9 +22,10 @@
         <tr>
             <th scope="row">@game.Id</th>
             <td>@game.User?.UserName</td>
-            <td>@game.Rounds</td>
-            <td>@game.Score</td>
+            <td>@game.TimeCreated</td>
+            <td>@game.GameDefinitionId</td>
             <td>@game.TimeSecs</td>
+            <td>@game.Score</td>
         </tr>
        }
     </tbody>

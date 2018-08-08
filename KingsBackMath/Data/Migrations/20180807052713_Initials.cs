@@ -3,19 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace KingsBackMath.Migrations
+namespace KingsBackMath.Data.Migrations
 {
-    public partial class Identity : Migration
+    public partial class Initials : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "Games",
-                type: "nvarchar(450)",
-                nullable: true,
-                oldClrType: typeof(int));
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -163,10 +156,81 @@ namespace KingsBackMath.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Games_UserId",
-                table: "Games",
-                column: "UserId");
+            migrationBuilder.CreateTable(
+                name: "Children",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GameUserId = table.Column<int>(type: "int", nullable: false),
+                    GameUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Children", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Children_AspNetUsers_GameUserId1",
+                        column: x => x.GameUserId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GameDefinitions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedById = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    MaxNumber = table.Column<int>(type: "int", nullable: false),
+                    MinNumber = table.Column<int>(type: "int", nullable: false),
+                    Rounds = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GameDefinitions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_GameDefinitions_AspNetUsers_CreatedById",
+                        column: x => x.CreatedById,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Games",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    GameDefinitionId = table.Column<int>(type: "int", nullable: false),
+                    Score = table.Column<int>(type: "int", nullable: false),
+                    TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TimeSecs = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Games", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Games_GameDefinitions_GameDefinitionId",
+                        column: x => x.GameDefinitionId,
+                        principalTable: "GameDefinitions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Games_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -207,21 +271,29 @@ namespace KingsBackMath.Migrations
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Games_AspNetUsers_UserId",
+            migrationBuilder.CreateIndex(
+                name: "IX_Children_GameUserId1",
+                table: "Children",
+                column: "GameUserId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GameDefinitions_CreatedById",
+                table: "GameDefinitions",
+                column: "CreatedById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Games_GameDefinitionId",
                 table: "Games",
-                column: "UserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
+                column: "GameDefinitionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Games_UserId",
+                table: "Games",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Games_AspNetUsers_UserId",
-                table: "Games");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -238,22 +310,19 @@ namespace KingsBackMath.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Children");
+
+            migrationBuilder.DropTable(
+                name: "Games");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "GameDefinitions");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Games_UserId",
-                table: "Games");
-
-            migrationBuilder.AlterColumn<int>(
-                name: "UserId",
-                table: "Games",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(450)",
-                oldNullable: true);
         }
     }
 }

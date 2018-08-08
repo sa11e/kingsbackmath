@@ -2,3 +2,16 @@ Stå i katalogen C:\Egna projekt\KingsBackMath\KingsBackMath
 dotnet ef migrations add GameAddedTimeCreated
 
 C:\Egna projekt\KingsBackMath\KingsBackMath>dotnet ef database update
+
+**** För att börja om
+1) Ta bort alla migrations och snapshotfilen
+2) Ta bort alla tabeller ur databasen.
+3) Kör kommandot nedan
+C:\Egna projekt\KingsBackMath\KingsBackMath>dotnet ef migrations Add Initials --context KingsBackMath.Data.KingsBackMathContext  -o ./Data/Migrations
+Done. To undo this action, use 'ef migrations remove'
+
+C:\Egna projekt\KingsBackMath\KingsBackMath>dotnet ef database update
+Done.
+
+C:\Egna projekt\KingsBackMath\KingsBackMath>
+

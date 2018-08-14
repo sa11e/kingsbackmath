@@ -63,6 +63,29 @@ namespace KingsBackMath.Data
             return context.SaveChanges() > 0;
         }
 
+        public Riddle GetRiddleOfToday()
+        {
+            var todaysRiddle = context.Riddles.FirstOrDefault(r => r.LastDisplayDate == DateTime.Now.Date);
+            if (todaysRiddle != null)
+                return todaysRiddle;
+
+            todaysRiddle = context.Riddles.FirstOrDefault(r => r.LastDisplayDate == null);
+            if (todaysRiddle == null)
+            {
+                // All riddles already displayed. Select an old one to display
+                todaysRiddle = context.Riddles.OrderBy(r => r.LastDisplayDate).FirstOrDefault();
+            }
+
+            // Set this days as the last display date for the riddle
+            if (todaysRiddle != null)
+            {
+                todaysRiddle.LastDisplayDate = DateTime.Now.Date;
+                SaveAll();
+            }
+
+            return todaysRiddle;
+        }
+
         public void AddEntity(object model)
         {
             context.Add(model);

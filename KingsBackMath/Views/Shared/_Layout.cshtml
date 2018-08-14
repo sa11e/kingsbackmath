@@ -23,8 +23,9 @@ dark inverse
             <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="Contact">Contact</a></li>
             <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="Games">Games</a></li>
             <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="About">About</a></li>
+            <li class="nav-item"><a class="nav-link" asp-controller="Riddle" asp-action="GetRiddleOfToday">Riddle of today</a></li>
             <li class="nav-item"><a class="nav-link" asp-controller="App" asp-action="Testpage">Testpage</a></li>
-            
+
             @if (User.Identity.IsAuthenticated)
             {
                 <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a></li>

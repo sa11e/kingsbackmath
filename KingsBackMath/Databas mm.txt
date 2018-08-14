@@ -15,3 +15,7 @@ Done.
 
 C:\Egna projekt\KingsBackMath\KingsBackMath>
 
+****** Gör en migration
+dotnet ef migrations Add Riddle --context KingsBackMath.Data.KingsBackMathContext  -o ./Data/Migrations
+
+dotnet ef database update

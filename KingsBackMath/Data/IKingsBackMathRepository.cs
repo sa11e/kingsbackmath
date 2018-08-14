@@ -8,7 +8,8 @@ namespace KingsBackMath.Data
         IEnumerable<Game> GetAllGames();
         IEnumerable<Game> GetGamesByUser(string userName);
         bool SaveAll();
-        
+
+        Riddle GetRiddleOfToday();
         void AddEntity(object model);
         string GetConnectionString();
     }

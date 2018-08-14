@@ -13,8 +13,9 @@ namespace KingsBackMath.Data
     {
         public KingsBackMathMappingProfile()
         {
-            CreateMap<Game, GameViewModel>()
-                .ReverseMap();
+            CreateMap<Game, GameViewModel>().ReverseMap();
+            CreateMap<Riddle, RiddleViewModel>().ReverseMap();
+
         }
     }
 }

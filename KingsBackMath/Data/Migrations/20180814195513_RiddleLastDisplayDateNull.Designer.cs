@@ -12,9 +12,10 @@ using System;
 namespace KingsBackMath.Data.Migrations
 {
     [DbContext(typeof(KingsBackMathContext))]
-    partial class KingsBackMathContextModelSnapshot : ModelSnapshot
+    [Migration("20180814195513_RiddleLastDisplayDateNull")]
+    partial class RiddleLastDisplayDateNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

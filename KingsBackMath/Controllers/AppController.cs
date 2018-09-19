@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KingsBackMath.Data;
+using KingsBackMath.Data.Entities;
 using KingsBackMath.Services;
 using KingsBackMath.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -61,7 +62,7 @@ namespace KingsBackMath.Controllers
             var games = repository.GetAllGames();
             return View(games);
         }
-
+        
         [HttpGet("Testpage")]
         public IActionResult Testpage()
         {

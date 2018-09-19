@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RiddleViewModel>
+﻿@model IEnumerable<Riddle>
 
 @{
     ViewBag.Title = "Create riddle";
@@ -15,17 +15,17 @@
 
 <table class="table table-bordered table-striped">
     <thead>
-        <tr>
-            <th>Id</th>
-            <th>Question</th>
-            <th>Answer</th>
-            <th>Difficulty</th>
-            <th>Rating</th>
-        </tr>
+    <tr>
+        <th>Id</th>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Difficulty</th>
+        <th>Rating</th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var riddle in Model)
-        {
+    @foreach (var riddle in Model)
+    {
         <tr>
             <th scope="row">@riddle.Id</th>
             <td>@riddle.Question</td>
@@ -33,11 +33,11 @@
             <td>@riddle.Difficulty</td>
             <td>@riddle.Rank</td>
             <td>
-                @*<a asp-action="Edit" asp-route-id="@riddle.Id">Edit</a>*@ 
-                <a asp-action="Edit" asp-route-id="@riddle.Id">Edit</a> | 
+                <a asp-action="Edit" asp-route-id="@riddle.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@riddle.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@riddle.Id">Delete</a>
             </td>
         </tr>
-        }
+    }
     </tbody>
 </table>

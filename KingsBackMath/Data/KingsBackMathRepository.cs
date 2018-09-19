@@ -86,6 +86,25 @@ namespace KingsBackMath.Data
             return todaysRiddle;
         }
 
+        public IEnumerable<Riddle> GetAllRiddles()
+        {
+            try
+            {
+                logger.LogInformation("GetAllRiddles was called");
+                return context.Riddles.OrderBy(g => g.Id);
+            }
+            catch (Exception e)
+            {
+                logger.LogError($"Failed to get all riddles: {e}");
+                return null;
+            }
+        }
+
+        public Riddle GetRiddle(int id)
+        {
+            return context.Riddles.FirstOrDefault(r => r.Id == id);
+        }
+
         public void AddEntity(object model)
         {
             context.Add(model);
